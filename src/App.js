@@ -28,12 +28,14 @@ class BooksApp extends React.Component {
     this.setState({ books });
   };
 
-  handleMove = async (id, e) => {
+  handleMove = async (book, e) => {
+    const { id } = book;
     const newShelf = e.target.value;
     if (newShelf !== "none") {
       try {
         await BooksAPI.update({ id }, newShelf);
         const bookInOldShelf = this.state.books.find((book) => book.id === id);
+        let books;
         if (bookInOldShelf) {
           const bookInNewShelf = Object.assign({}, bookInOldShelf, {
             shelf: newShelf,
@@ -41,9 +43,14 @@ class BooksApp extends React.Component {
           const filteredBooks = this.state.books.filter(
             (book) => book.id !== id
           );
-          const books = [...filteredBooks, bookInNewShelf];
-          this.setState({ books });
+          books = [...filteredBooks, bookInNewShelf];
+        } else {
+          const newBook = Object.assign({}, book, {
+            shelf: newShelf,
+          });
+          books = [...this.state.books, newBook];
         }
+        this.setState({ books });
       } catch (error) {
         console.log(error.message);
       }

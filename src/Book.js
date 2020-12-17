@@ -15,7 +15,12 @@ export default function Book(props) {
           }}
         />
         <div className="book-shelf-changer">
-          <select value={shelf} onChange={(e) => handleMove({ id }, e)}>
+          <select
+            value={shelf}
+            onChange={(e) =>
+              handleMove({ id, title, authors, imageURL, shelf }, e)
+            }
+          >
             <option value="move" disabled>
               Move to...
             </option>
