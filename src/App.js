@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import * as BooksAPI from "./BooksAPI";
 import Shelves from "./Shelves";
 import Search from "./Search";
+import BookDetails from "./BookDetails";
 import "./App.css";
 import debounce from "lodash.debounce";
 
@@ -115,6 +116,7 @@ class BooksApp extends React.Component {
             <Shelves books={this.state.books} handleMove={this.handleMove} />
           )}
         />
+        <Route path="/book/:id" component={BookDetails} />
       </div>
     );
   }
