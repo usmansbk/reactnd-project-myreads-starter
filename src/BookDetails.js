@@ -82,7 +82,9 @@ export default class BookDetails extends React.Component {
               <small>{pageCount}</small>
             </div>
           </div>
-        ) : null}
+        ) : (
+          <p>Loading...</p>
+        )}
       </>
     );
   }
