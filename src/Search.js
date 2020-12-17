@@ -1,20 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import BookGrid from "./BookGrid";
 
-export default function Search({
-  books,
-  closeSearch,
-  handleMove,
-  onChange,
-  query,
-}) {
+export default function Search({ books, handleMove, onChange, query }) {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <button className="close-search" onClick={closeSearch}>
-          Close
-        </button>
+        <Link to="/">
+          <button className="close-search">Close</button>
+        </Link>
         <div className="search-books-input-wrapper">
           {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.

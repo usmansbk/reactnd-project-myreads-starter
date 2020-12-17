@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import Bookshelf from "./Bookshelf";
 
 /**
@@ -41,7 +42,7 @@ function getSections(books) {
   return Object.values(sections);
 }
 
-export default function Shelves({ books, openSearch, handleMove }) {
+export default function Shelves({ books, handleMove }) {
   const shelves = getSections(books);
 
   return (
@@ -63,7 +64,9 @@ export default function Shelves({ books, openSearch, handleMove }) {
         </div>
       </div>
       <div className="open-search">
-        <button onClick={openSearch}>Add a book</button>
+        <Link to="/search">
+          <button>Add a book</button>
+        </Link>
       </div>
     </div>
   );

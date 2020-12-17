@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export default function Book(props) {
-  const { id, title, authors, imageURL, shelf, handleMove } = props;
+  const { id, title, authors, imageLinks, shelf, handleMove } = props;
   return (
     <div className="book">
       <div className="book-top">
@@ -11,14 +11,14 @@ export default function Book(props) {
           style={{
             width: 128,
             height: 193,
-            backgroundImage: `url(${imageURL})`,
+            backgroundImage: imageLinks && `url(${imageLinks.thumbnail})`,
           }}
         />
         <div className="book-shelf-changer">
           <select
             value={shelf}
             onChange={(e) =>
-              handleMove({ id, title, authors, imageURL, shelf }, e)
+              handleMove({ id, title, authors, imageLinks, shelf }, e)
             }
           >
             <option value="move" disabled>
@@ -40,7 +40,7 @@ export default function Book(props) {
 Book.propTypes = {
   title: PropTypes.string.isRequired,
   authors: PropTypes.array.isRequired,
-  imageURL: PropTypes.string.isRequired,
+  imageLinks: PropTypes.object.isRequired,
   shelf: PropTypes.string.isRequired,
   handleMove: PropTypes.func.isRequired,
 };

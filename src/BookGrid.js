@@ -11,7 +11,7 @@ export default function BookGrid({ books, handleMove }) {
             id={id}
             title={title}
             authors={authors}
-            imageURL={imageLinks && imageLinks.thumbnail}
+            imageLinks={imageLinks}
             shelf={shelf}
             handleMove={handleMove}
           />
