@@ -1,14 +1,11 @@
 import React from "react";
 import BookGrid from "./BookGrid";
 
-export default function Search({ books }) {
+export default function Search({ books, closeSearch }) {
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <button
-          className="close-search"
-          onClick={() => this.setState({ showSearchPage: false })}
-        >
+        <button className="close-search" onClick={closeSearch}>
           Close
         </button>
         <div className="search-books-input-wrapper">
