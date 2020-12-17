@@ -36,6 +36,7 @@ class BooksApp extends React.Component {
         await BooksAPI.update({ id }, newShelf);
         const bookInOldShelf = this.state.books.find((book) => book.id === id);
         let books;
+        let results = this.state.results;
         if (bookInOldShelf) {
           const bookInNewShelf = Object.assign({}, bookInOldShelf, {
             shelf: newShelf,
@@ -44,13 +45,29 @@ class BooksApp extends React.Component {
             (book) => book.id !== id
           );
           books = [...filteredBooks, bookInNewShelf];
-        } else {
+        }
+
+        // Now we update the state of the book in the search result
+        const oldBookInSearchIndex = results.findIndex(
+          (book) => book.id === id
+        );
+
+        if (oldBookInSearchIndex !== -1) {
           const newBook = Object.assign({}, book, {
             shelf: newShelf,
           });
           books = [...this.state.books, newBook];
+
+          const oldBookInSearch = results[oldBookInSearchIndex];
+          const updatedBookInSearch = Object.assign({}, oldBookInSearch, {
+            shelf: newShelf,
+          });
+          results = results
+            .slice(0, oldBookInSearchIndex)
+            .concat([updatedBookInSearch])
+            .concat(results.slice(oldBookInSearchIndex + 1));
         }
-        this.setState({ books });
+        this.setState({ books, results });
       } catch (error) {
         console.log(error.message);
       }
