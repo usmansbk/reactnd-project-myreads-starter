@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function Book({ title, authors, imageURL, status }) {
+export default function Book({ title, authors, imageURL, shelf, handleMove }) {
   return (
     <div className="book">
       <div className="book-top">
@@ -13,7 +14,7 @@ export default function Book({ title, authors, imageURL, status }) {
           }}
         />
         <div className="book-shelf-changer">
-          <select value={status}>
+          <select value={shelf} onChange={handleMove}>
             <option value="move" disabled>
               Move to...
             </option>
@@ -29,3 +30,11 @@ export default function Book({ title, authors, imageURL, status }) {
     </div>
   );
 }
+
+Book.propTypes = {
+  title: PropTypes.string.isRequired,
+  authors: PropTypes.array.isRequired,
+  imageURL: PropTypes.string.isRequired,
+  shelf: PropTypes.string.isRequired,
+  handleMove: PropTypes.func.isRequired,
+};
