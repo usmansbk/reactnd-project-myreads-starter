@@ -2,6 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import Bookshelf from "./Bookshelf";
 
+/**
+ *
+ * @description Creates a list of book shelves
+ * @param {object[]} books  - list of books
+ * @returns {object[]} - The categories of books
+ */
 function getSections(books) {
   const sections = books.reduce((accumulator, book) => {
     const shelfName = book.shelf;
