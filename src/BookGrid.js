@@ -5,13 +5,13 @@ import Book from "./Book";
 export default function BookGrid({ books, handleMove }) {
   return (
     <ol className="books-grid">
-      {books.map(({ title, authors, imageLinks, id, shelf }) => (
+      {books.map(({ title, authors = [], imageLinks, id, shelf = "none" }) => (
         <li key={id}>
           <Book
             id={id}
             title={title}
             authors={authors}
-            imageURL={imageLinks.thumbnail}
+            imageURL={imageLinks && imageLinks.thumbnail}
             shelf={shelf}
             handleMove={handleMove}
           />

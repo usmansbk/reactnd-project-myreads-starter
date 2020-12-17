@@ -3,6 +3,7 @@ import * as BooksAPI from "./BooksAPI";
 import Shelves from "./Shelves";
 import Search from "./Search";
 import "./App.css";
+import debounce from "lodash.debounce";
 
 class BooksApp extends React.Component {
   state = {
@@ -13,7 +14,9 @@ class BooksApp extends React.Component {
      * pages, as well as provide a good URL they can bookmark and share.
      */
     showSearchPage: false,
+    query: "",
     books: [],
+    results: [],
   };
 
   openSearch = () => this.setState({ showSearchPage: true });
@@ -47,12 +50,37 @@ class BooksApp extends React.Component {
     }
   };
 
+  onChange = (e) => {
+    const query = e.target.value;
+    this.setState(
+      {
+        query,
+      },
+      () => this.debouncedSetState(query)
+    );
+  };
+
+  debouncedSetState = debounce(async (query) => {
+    const results = await BooksAPI.search(query);
+    if (Array.isArray(results)) {
+      this.setState({
+        results,
+      });
+    } else {
+      this.setState({
+        results: [],
+      });
+    }
+  }, 200);
+
   render() {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
           <Search
-            books={this.state.books}
+            query={this.state.query}
+            books={this.state.results}
+            onChange={this.onChange}
             closeSearch={this.closeSearch}
             handleMove={this.handleMove}
           />

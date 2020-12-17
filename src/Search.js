@@ -2,7 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import BookGrid from "./BookGrid";
 
-export default function Search({ books, closeSearch, handleMove }) {
+export default function Search({
+  books,
+  closeSearch,
+  handleMove,
+  onChange,
+  query,
+}) {
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -18,7 +24,12 @@ export default function Search({ books, closeSearch, handleMove }) {
                   However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                   you don't find a specific author or title. Every search is limited by search terms.
                 */}
-          <input type="text" placeholder="Search by title or author" />
+          <input
+            value={query}
+            onChange={onChange}
+            type="text"
+            placeholder="Search by title or author"
+          />
         </div>
       </div>
       <div className="search-books-results">
@@ -31,4 +42,6 @@ export default function Search({ books, closeSearch, handleMove }) {
 Search.propTypes = {
   books: PropTypes.array.isRequired,
   handleMove: PropTypes.func.isRequired,
+  query: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };
