@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import BookGrid from "./BookGrid";
 
-export default function Search({ books, closeSearch }) {
+export default function Search({ books, closeSearch, handleMove }) {
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -26,3 +27,8 @@ export default function Search({ books, closeSearch }) {
     </div>
   );
 }
+
+Search.propTypes = {
+  books: PropTypes.array.isRequired,
+  handleMove: PropTypes.func.isRequired,
+};

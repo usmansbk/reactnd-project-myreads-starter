@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Bookshelf from "./Bookshelf";
 
 function getSections(books) {
@@ -34,7 +35,7 @@ function getSections(books) {
   return sections;
 }
 
-export default function Shelves({ books = [], openSearch }) {
+export default function Shelves({ books, openSearch, handleMove }) {
   const shelves = getSections(books);
 
   return (
@@ -45,7 +46,13 @@ export default function Shelves({ books = [], openSearch }) {
       <div className="list-books-content">
         <div>
           {Object.values(shelves).map(({ title, books, shelf }) => (
-            <Bookshelf title={title} books={books} key={title} shelf={shelf} />
+            <Bookshelf
+              title={title}
+              books={books}
+              key={title}
+              shelf={shelf}
+              handleMove={handleMove}
+            />
           ))}
         </div>
       </div>
@@ -55,3 +62,8 @@ export default function Shelves({ books = [], openSearch }) {
     </div>
   );
 }
+
+Shelves.propTypes = {
+  books: PropTypes.array.isRequired,
+  handleMove: PropTypes.func.isRequired,
+};

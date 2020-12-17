@@ -25,13 +25,23 @@ class BooksApp extends React.Component {
     this.setState({ books });
   };
 
+  handleMove = () => {};
+
   render() {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <Search books={this.state.books} closeSearch={this.closeSearch} />
+          <Search
+            books={this.state.books}
+            closeSearch={this.closeSearch}
+            handleMove={this.handleMove}
+          />
         ) : (
-          <Shelves books={this.state.books} openSearch={this.openSearch} />
+          <Shelves
+            books={this.state.books}
+            openSearch={this.openSearch}
+            handleMove={this.handleMove}
+          />
         )}
       </div>
     );

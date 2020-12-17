@@ -1,8 +1,8 @@
 import React from "react";
-import Book from "./Book";
 import PropTypes from "prop-types";
+import Book from "./Book";
 
-export default function BookGrid({ books = [] }) {
+export default function BookGrid({ books, handleMove }) {
   return (
     <ol className="books-grid">
       {books.map(({ title, authors, imageLinks, id, shelf }) => (
@@ -12,6 +12,7 @@ export default function BookGrid({ books = [] }) {
             authors={authors}
             imageURL={imageLinks.thumbnail}
             shelf={shelf}
+            handleMove={handleMove}
           />
         </li>
       ))}
@@ -21,4 +22,5 @@ export default function BookGrid({ books = [] }) {
 
 BookGrid.propTypes = {
   books: PropTypes.array,
+  handleMove: PropTypes.func.isRequired,
 };
