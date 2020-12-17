@@ -9,8 +9,8 @@ export default function Shelves({ shelves = [], openSearch }) {
       </div>
       <div className="list-books-content">
         <div>
-          {shelves.map(({ title, books }) => (
-            <Bookshelf title={title} books={books} />
+          {shelves.map(({ title, books }, index) => (
+            <Bookshelf title={title} books={books} key={index} />
           ))}
         </div>
       </div>

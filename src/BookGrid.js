@@ -4,8 +4,8 @@ import Book from "./Book";
 export default function BookGrid({ books = [] }) {
   return (
     <ol className="books-grid">
-      {books.map(({ title, authors, imageURL, id, status }) => (
-        <li key={id}>
+      {books.map(({ title, authors, imageURL, id, status }, index) => (
+        <li key={index}>
           <Book
             title={title}
             authors={authors}
