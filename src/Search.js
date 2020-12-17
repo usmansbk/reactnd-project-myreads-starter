@@ -1,6 +1,7 @@
 import React from "react";
+import BookGrid from "./BookGrid";
 
-export default function Search() {
+export default function Search({ books }) {
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -23,7 +24,7 @@ export default function Search() {
         </div>
       </div>
       <div className="search-books-results">
-        <ol className="books-grid" />
+        <BookGrid books={books} />
       </div>
     </div>
   );
