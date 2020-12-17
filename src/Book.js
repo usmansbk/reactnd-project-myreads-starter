@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export default function Book({ title, authors, imageURL, shelf, handleMove }) {
+export default function Book({
+  id,
+  title,
+  authors,
+  imageURL,
+  shelf,
+  handleMove,
+}) {
   return (
     <div className="book">
       <div className="book-top">
@@ -14,7 +21,7 @@ export default function Book({ title, authors, imageURL, shelf, handleMove }) {
           }}
         />
         <div className="book-shelf-changer">
-          <select value={shelf} onChange={handleMove}>
+          <select value={shelf} onChange={(e) => handleMove(id, e)}>
             <option value="move" disabled>
               Move to...
             </option>

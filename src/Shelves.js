@@ -32,7 +32,7 @@ function getSections(books) {
     return accumulator;
   }, {});
 
-  return sections;
+  return Object.values(sections);
 }
 
 export default function Shelves({ books, openSearch, handleMove }) {
@@ -45,7 +45,7 @@ export default function Shelves({ books, openSearch, handleMove }) {
       </div>
       <div className="list-books-content">
         <div>
-          {Object.values(shelves).map(({ title, books, shelf }) => (
+          {shelves.map(({ title, books, shelf }) => (
             <Bookshelf
               title={title}
               books={books}

@@ -22,7 +22,7 @@ export default function Search({ books, closeSearch, handleMove }) {
         </div>
       </div>
       <div className="search-books-results">
-        <BookGrid books={books} />
+        <BookGrid books={books} handleMove={handleMove} />
       </div>
     </div>
   );

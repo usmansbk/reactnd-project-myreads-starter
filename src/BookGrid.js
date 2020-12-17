@@ -8,6 +8,7 @@ export default function BookGrid({ books, handleMove }) {
       {books.map(({ title, authors, imageLinks, id, shelf }) => (
         <li key={id}>
           <Book
+            id={id}
             title={title}
             authors={authors}
             imageURL={imageLinks.thumbnail}
