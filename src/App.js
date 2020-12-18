@@ -1,11 +1,12 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import debounce from "lodash.debounce";
 import * as BooksAPI from "./BooksAPI";
 import Shelves from "./Shelves";
 import Search from "./Search";
 import BookDetails from "./BookDetails";
+import { markResultShelf } from "./utils";
 import "./App.css";
-import debounce from "lodash.debounce";
 
 class BooksApp extends React.Component {
   state = {
@@ -91,7 +92,7 @@ class BooksApp extends React.Component {
       const results = await BooksAPI.search(query);
       if (Array.isArray(results)) {
         this.setState({
-          results,
+          results: markResultShelf(results, this.state.books),
           error: null,
         });
       } else {

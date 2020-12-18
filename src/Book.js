@@ -42,8 +42,8 @@ export default function Book(props) {
 
 Book.propTypes = {
   title: PropTypes.string.isRequired,
-  authors: PropTypes.array.isRequired,
-  imageLinks: PropTypes.object.isRequired,
+  authors: PropTypes.array,
+  imageLinks: PropTypes.object,
   shelf: PropTypes.string.isRequired,
   handleMove: PropTypes.func.isRequired,
 };
