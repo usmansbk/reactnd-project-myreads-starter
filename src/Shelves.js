@@ -52,15 +52,19 @@ export default function Shelves({ books, handleMove }) {
       </div>
       <div className="list-books-content">
         <div>
-          {shelves.map(({ title, books, shelf }) => (
-            <Bookshelf
-              title={title}
-              books={books}
-              key={title}
-              shelf={shelf}
-              handleMove={handleMove}
-            />
-          ))}
+          {shelves.length ? (
+            shelves.map(({ title, books, shelf }) => (
+              <Bookshelf
+                title={title}
+                books={books}
+                key={title}
+                shelf={shelf}
+                handleMove={handleMove}
+              />
+            ))
+          ) : (
+            <p>Loading</p>
+          )}
         </div>
       </div>
       <div className="open-search">

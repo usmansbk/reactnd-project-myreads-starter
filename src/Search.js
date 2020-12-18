@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import BookGrid from "./BookGrid";
 
-export default function Search({ books, handleMove, onChange, query }) {
+export default function Search({ books, handleMove, onChange, query, error }) {
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -28,7 +28,7 @@ export default function Search({ books, handleMove, onChange, query }) {
         </div>
       </div>
       <div className="search-books-results">
-        <BookGrid books={books} handleMove={handleMove} />
+        {error || <BookGrid books={books} handleMove={handleMove} />}
       </div>
     </div>
   );
@@ -39,4 +39,5 @@ Search.propTypes = {
   handleMove: PropTypes.func.isRequired,
   query: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  error: PropTypes.string,
 };

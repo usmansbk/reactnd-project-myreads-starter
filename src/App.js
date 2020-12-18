@@ -19,6 +19,7 @@ class BooksApp extends React.Component {
     query: "",
     books: [],
     results: [],
+    error: null,
   };
 
   componentDidMount = async () => {
@@ -77,20 +78,32 @@ class BooksApp extends React.Component {
     this.setState(
       {
         query,
+        error: null,
       },
-      () => this.debouncedSetState(query)
+      () => {
+        this.debouncedSetState(query);
+      }
     );
   };
 
   debouncedSetState = debounce(async (query) => {
-    const results = await BooksAPI.search(query);
-    if (Array.isArray(results)) {
-      this.setState({
-        results,
-      });
+    if (query) {
+      const results = await BooksAPI.search(query);
+      if (Array.isArray(results)) {
+        this.setState({
+          results,
+          error: null,
+        });
+      } else {
+        this.setState({
+          results: [],
+          error: "Books not found",
+        });
+      }
     } else {
       this.setState({
         results: [],
+        error: null,
       });
     }
   }, 200);
@@ -106,6 +119,7 @@ class BooksApp extends React.Component {
               books={this.state.results}
               onChange={this.onChange}
               handleMove={this.handleMove}
+              error={this.state.error}
             />
           )}
         />
